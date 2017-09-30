@@ -1,2 +1,3 @@
 # janus-docker
-Ubuntu based Dockerfile for https://github.com/meetecho/janus-gateway
+
+Ubuntu based Dockerfile for [janus-gateway](https://github.com/meetecho/janus-gateway).
