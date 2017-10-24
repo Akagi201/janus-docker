@@ -6,6 +6,7 @@ RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
+            gettext \
             libmicrohttpd-dev \
             libjansson-dev \
             libnice-dev \
@@ -17,6 +18,7 @@ RUN set -ex; \
             libogg-dev \
             libini-config-dev \
             libcollection-dev \
+            libffi-dev \
             pkg-config \
             gengetopt \
             libtool \
@@ -25,14 +27,15 @@ RUN set -ex; \
             git-core \
             cmake \
             wget \
-            ca-certificates \
+            ca-certificates; \
     \
-    rm -rf /var/lib/apt/lists/*; \
+    rm -rf /var/lib/apt/lists/*
 
 # usrsctp
 ENV USRSCTP_HASH "7737b4a547256d1b6a8176555e18984f68039dbc"
 
 RUN git clone https://github.com/sctplab/usrsctp.git /tmp/usrsctp \
+    && cd /tmp/usrsctp \
     && git checkout $USRSCTP_HASH \
     && ./bootstrap \
     && ./configure --prefix=/usr/local \
@@ -55,7 +58,7 @@ ENV LIBSRTP_VERSION "2.1.0"
 RUN wget https://github.com/cisco/libsrtp/archive/v$LIBSRTP_VERSION.tar.gz -O /tmp/v$LIBSRTP_VERSION.tar.gz \
     && tar xvf /tmp/v$LIBSRTP_VERSION.tar.gz -C /tmp \
     && cd /tmp/libsrtp-$LIBSRTP_VERSION \
-    && ./configure --prefix=/usr/local ----enable-openssl \
+    && ./configure --prefix=/usr/local --enable-openssl \
     && make shared_library && make install
 
 # glib
