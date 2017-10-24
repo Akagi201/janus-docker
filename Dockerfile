@@ -32,7 +32,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # usrsctp
-ENV USRSCTP_HASH "7737b4a547256d1b6a8176555e18984f68039dbc"
+ENV USRSCTP_HASH "48b9802f87f4be85ef9302f1c47c55b39077c251"
 
 RUN git clone https://github.com/sctplab/usrsctp.git /tmp/usrsctp \
     && cd /tmp/usrsctp \
@@ -42,7 +42,7 @@ RUN git clone https://github.com/sctplab/usrsctp.git /tmp/usrsctp \
     && make && make install
 
 # libwebsockets
-ENV LIBWEBSOCKETS_VERSION "2.3.0"
+ENV LIBWEBSOCKETS_VERSION "2.4.0"
 
 RUN wget https://github.com/warmcat/libwebsockets/archive/v$LIBWEBSOCKETS_VERSION.tar.gz -O /tmp/v$LIBWEBSOCKETS_VERSION.tar.gz \
     && tar xvf /tmp/v$LIBWEBSOCKETS_VERSION.tar.gz -C /tmp \
@@ -62,7 +62,7 @@ RUN wget https://github.com/cisco/libsrtp/archive/v$LIBSRTP_VERSION.tar.gz -O /t
     && make shared_library && make install
 
 # glib
-ENV GLIB_VERSION "2.54.0"
+ENV GLIB_VERSION "2.54.1"
 
 RUN wget https://github.com/GNOME/glib/archive/$GLIB_VERSION.tar.gz -O /tmp/$GLIB_VERSION.tar.gz \
     && tar xvf /tmp/$GLIB_VERSION.tar.gz -C /tmp \
@@ -72,7 +72,7 @@ RUN wget https://github.com/GNOME/glib/archive/$GLIB_VERSION.tar.gz -O /tmp/$GLI
     && make && make install
 
 # janus-gateway
-ENV JANUS_GATEWAY_HASH "9bc69c136ecf093da77ce39d1917e26d4c3f9aeb"
+ENV JANUS_GATEWAY_HASH "63d7ea37ebba5d40ddc4bc374210814c26537e92"
 
 RUN git clone https://github.com/meetecho/janus-gateway.git /tmp/janus-gateway \
     && cd /tmp/janus-gateway \
